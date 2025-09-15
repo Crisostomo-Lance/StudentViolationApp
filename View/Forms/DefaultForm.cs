@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentViolationApp.View.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,19 @@ namespace StudentViolationApp.View
         {
             InitializeComponent();
             AccountPanel();
+            loadForms(new DashboardForm());
+        }
+
+        private void loadForms(object Form)
+        {
+            if (this.panelMain.Controls.Count > 0)
+                this.panelMain.Controls.RemoveAt(0);
+            Form f = Form as Form;
+            f.TopLevel = false;
+            f.Dock = DockStyle.Fill;
+            this.panelMain.Controls.Add(f);
+            this.panelMain.Tag = f;
+            f.Show();
         }
 
         //Function to hide the account panel
@@ -55,8 +69,45 @@ namespace StudentViolationApp.View
             txtBoxSearchAll_KeyDown(sender, new KeyEventArgs(Keys.Enter));
         }
 
+        private void btnDashboardForm_Click(object sender, EventArgs e)
+        {
+            loadForms(new DashboardForm());
+           
+        }
+
+        private void btnStudentsForm_Click(object sender, EventArgs e)
+        {
+            loadForms(new StudentForm());
+          
+        }
+
+        private void btnViolationsForm_Click(object sender, EventArgs e)
+        {
+            loadForms(new ViolationForm());
+          
+        }
+
+        private void btnReportForm_Click(object sender, EventArgs e)
+        {
+            loadForms(new ReportsForm());
+         
+        }
+
+        private void btnSettingForm_Click(object sender, EventArgs e)
+        {
+            loadForms(new SettingForm());
+        
+        }
+
+        private void lbl_Role_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
-
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
     }
 }
